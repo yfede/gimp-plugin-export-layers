@@ -309,6 +309,9 @@ class FilenameValidator(StringValidator):
     If the filename is truncated to an empty string, return "Untitled".
     """
     
+    if filename.count('#') > 0:
+      filename = filename[:filename.rindex('#')]
+    
     filename = (
       re.sub(cls._INVALID_CHARS_PATTERN, "", filename)
         .strip(" ")
